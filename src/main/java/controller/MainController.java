@@ -1,5 +1,6 @@
 package controller;
 
+import constants.Constants;
 import event.Event;
 import graphics.GraphicalAgent;
 import event.EventSender;
@@ -15,11 +16,12 @@ import java.util.List;
 
 public class MainController implements ResponseVisitor
 {
-    private final GraphicalAgent graphicalAgent;
+    private final GraphicalAgent graphicalAgent; // TODO use this in the front-end
     private final EventSender eventSender;
     private final List<Event> events;
     private final Loop loop;
-    // username, authToken
+    private String authToken;
+    private User user;
 
     public MainController(EventSender eventSender)
     {
@@ -32,7 +34,7 @@ public class MainController implements ResponseVisitor
     public void start()
     {
         loop.start();
-        /* TODO graphic stuff
+        /* TODO graphic stuff for the front-end
         graphicalAgent.initialize();
         graphicalAgent.gotoMainMenu(); */
     }
@@ -63,7 +65,7 @@ public class MainController implements ResponseVisitor
     @Override
     public void loginResponse(String response, String authToken)
     {
-
+        // TODO initialize authToken and user
     }
 
     @Override
