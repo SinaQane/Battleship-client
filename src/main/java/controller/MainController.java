@@ -1,14 +1,14 @@
 package controller;
 
 import constants.Constants;
-import event.Event;
 import graphics.GraphicalAgent;
 import event.EventSender;
+import event.Event;
+import model.game.Game;
 import model.Board;
 import model.User;
-import model.game.Game;
-import response.Response;
 import response.ResponseVisitor;
+import response.Response;
 import util.Loop;
 
 import java.util.LinkedList;
@@ -70,6 +70,12 @@ public class MainController implements ResponseVisitor
 
     @Override
     public void signupResponse(String response)
+    {
+
+    }
+
+    @Override
+    public void logoutResponse(String response)
     {
 
     }
