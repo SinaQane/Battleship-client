@@ -8,7 +8,7 @@ import util.Loop;
 public class GraphicalAgent
 {
     // private final Map<PanelType, AbstractPanel> panels;
-    // Main frame (mainFrame) for being displayed
+    // private final MainFrame mainFrame;
     private final EventListener listener;
     private String authToken;
     private Game currentGame;
@@ -16,14 +16,14 @@ public class GraphicalAgent
 
     public GraphicalAgent(EventListener listener)
     {
-        // Set main frame to a new frame (sth like mainFrame = new MainFrame())
         // this.panels = new EnumMap<>(PanelType.class);
+        // mainFrame = new MainFrame();
         this.listener = listener;
     }
 
     public void initialize()
     {
-        // set frame visible
+        // mainFrame.setVisible(true);
     }
 
     public void showLoginPage()
