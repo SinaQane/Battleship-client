@@ -2,6 +2,8 @@ package graphics;
 
 import event.EventListener;
 import event.events.gameplay.GetBoardEvent;
+import graphics.firstpage.FirstPage;
+import javafx.stage.Stage;
 import model.game.Game;
 import util.Loop;
 
@@ -9,6 +11,7 @@ public class GraphicalAgent
 {
     // private final Map<PanelType, AbstractPanel> panels;
     // private final MainFrame mainFrame;
+    private Stage stage;
     private final EventListener listener;
     private String authToken;
     private Game currentGame;
@@ -21,9 +24,19 @@ public class GraphicalAgent
         this.listener = listener;
     }
 
+    public void setStage(Stage stage)
+    {
+        this.stage = stage;
+    }
+
+    public void setAuthToken(String authToken)
+    {
+        this.authToken = authToken;
+    }
+
     public void initialize()
     {
-        // mainFrame.setVisible(true);
+        stage.setScene(new FirstPage().getScene());
     }
 
     public void showLoginPage()

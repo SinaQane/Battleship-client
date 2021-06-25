@@ -2,17 +2,25 @@ import config.Config;
 import constants.Constants;
 import controller.MainController;
 import event.SocketEventSender;
+import javafx.application.Application;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.Socket;
 
-public class Main
+public class Main extends Application
 {
     static Config config;
     static String host;
     static int port;
 
     public static void main(String[] args)
+    {
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage)
     {
         config = new Config(Constants.CONFIG_ADDRESS);
         host = config.getProperty(String.class,"host").orElse(Constants.DEFAULT_HOST);
@@ -30,7 +38,7 @@ public class Main
         try
         {
             assert socket != null;
-            controller = new MainController(new SocketEventSender(socket));
+            controller = new MainController(new SocketEventSender(socket), primaryStage);
         }
         catch (IOException e)
         {

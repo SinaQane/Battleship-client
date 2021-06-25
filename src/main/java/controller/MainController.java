@@ -4,6 +4,7 @@ import constants.Constants;
 import graphics.GraphicalAgent;
 import event.EventSender;
 import event.Event;
+import javafx.stage.Stage;
 import model.game.Game;
 import model.Board;
 import model.User;
@@ -16,27 +17,25 @@ import java.util.List;
 
 public class MainController implements ResponseVisitor
 {
-    private final GraphicalAgent graphicalAgent; // TODO use this in the front-end
+    private final GraphicalAgent graphicalAgent;
     private final EventSender eventSender;
-    private final List<Event> events;
+    private final List<Event> events = new LinkedList<>();
     private final Loop loop;
     private String authToken;
     private User user;
 
-    public MainController(EventSender eventSender)
+    public MainController(EventSender eventSender, Stage primaryStage)
     {
-        this.loop = new Loop(Constants.FPS, this::sendEvents);
-        this.graphicalAgent = new GraphicalAgent(this::addEvent);
-        this.events = new LinkedList<>();
+        loop = new Loop(Constants.FPS, this::sendEvents);
+        graphicalAgent = new GraphicalAgent(this::addEvent);
+        graphicalAgent.setStage(primaryStage);
         this.eventSender = eventSender;
     }
 
     public void start()
     {
         loop.start();
-        /* TODO graphic stuff for the front-end
         graphicalAgent.initialize();
-        graphicalAgent.gotoMainMenu(); */
     }
 
     private void addEvent(Event event)
@@ -71,9 +70,11 @@ public class MainController implements ResponseVisitor
         }
         else
         {
+            graphicalAgent.setAuthToken(authToken);
             this.authToken = authToken;
             this.user = user;
-            // graphicalAgent.showGamePage(authToken);
+            // does graphicalAgent need user?
+            // graphicalAgent.showMainMenu();
         }
     }
 
@@ -86,7 +87,16 @@ public class MainController implements ResponseVisitor
     @Override
     public void logoutResponse(String response)
     {
-
+        if (response.equals("logout successful"))
+        {
+            graphicalAgent.setAuthToken("");
+            user = null;
+            // does graphicalAgent need user?
+        }
+        else
+        {
+            // graphicalAgent.getMainMenu().getText().setText(response);
+        }
     }
 
     @Override
