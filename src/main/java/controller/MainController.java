@@ -63,9 +63,18 @@ public class MainController implements ResponseVisitor
     }
 
     @Override
-    public void loginResponse(String response, String authToken)
+    public void loginResponse(User user, String response, String authToken)
     {
-        // TODO initialize authToken and user
+        if (authToken.equals(""))
+        {
+            // graphicalAgent.getLoginPage().getText().setText(response);
+        }
+        else
+        {
+            this.authToken = authToken;
+            this.user = user;
+            // graphicalAgent.showGamePage(authToken);
+        }
     }
 
     @Override
