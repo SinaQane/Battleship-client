@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import listener.ButtonListener;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,6 +23,7 @@ public class MainMenu implements Initializable
     private final Scene scene;
     private final FXMLLoader loader;
 
+    private final ButtonListener buttonListener = new ButtonListener();
     public Label username;
     public Label message;
 
@@ -71,8 +73,8 @@ public class MainMenu implements Initializable
 
     }
 
-    public void logout(ActionEvent actionEvent)
+    public void logout()
     {
-
+        buttonListener.eventOccurred("logout");
     }
 }

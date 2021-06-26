@@ -14,6 +14,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import listener.ButtonListener;
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,6 +26,7 @@ public class Scoreboard implements Initializable
     private static final String SCOREBOARD = new Config(Constants.CONFIG_ADDRESS)
             .getProperty(String.class,"scoreboard").orElse("");
 
+    private final ButtonListener buttonListener = new ButtonListener();
     private final Scene scene;
     private final FXMLLoader loader;
 
@@ -92,8 +94,8 @@ public class Scoreboard implements Initializable
         this.scoreboard = scoreboard;
     }
 
-    public void back(ActionEvent actionEvent)
+    public void back()
     {
-
+        buttonListener.eventOccurred("mainmenu");
     }
 }

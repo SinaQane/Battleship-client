@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import listener.ButtonListener;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,7 +21,7 @@ public class FirstPage implements Initializable
     private final Scene scene;
     private final FXMLLoader loader;
 
-    // private StringListener listener;
+    private final ButtonListener buttonListener = new ButtonListener();
 
     public FirstPage()
     {
@@ -55,17 +56,11 @@ public class FirstPage implements Initializable
 
     public void login()
     {
-        //listener.listen("Login");
+        buttonListener.eventOccurred("login");
     }
 
     public void signUp()
     {
-        //listener.listen("SignUp");
+        buttonListener.eventOccurred("signup");
     }
-
-    /* Should I use listener?
-    public void setListener(StringListener listener)
-    {
-        this.listener = listener;
-    } */
 }
