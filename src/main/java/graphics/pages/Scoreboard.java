@@ -4,6 +4,7 @@ import config.Config;
 import constants.Constants;
 import controller.scoreboard.ScoreboardResultFinalized;
 import event.EventListener;
+import event.events.menu.ChangeFrameEvent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -63,7 +64,7 @@ public class Scoreboard implements Initializable
 
     public void setListener(EventListener listener)
     {
-
+        this.listener = listener;
     }
 
     // FXML Controller
@@ -101,6 +102,6 @@ public class Scoreboard implements Initializable
 
     public void back()
     {
-        // listener.listen(); TODO MainMenuEvent
+        listener.listen(new ChangeFrameEvent("mainMenu"));
     }
 }

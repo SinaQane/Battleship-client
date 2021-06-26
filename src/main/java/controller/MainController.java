@@ -124,6 +124,15 @@ public class MainController implements ResponseVisitor
     }
 
     @Override
+    public void changeFrame(String frame)
+    {
+        switch (frame)
+        {
+
+        }
+    }
+
+    @Override
     public void pickBoard(Board[] boards)
     {
 

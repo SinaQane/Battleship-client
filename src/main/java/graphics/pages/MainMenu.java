@@ -24,12 +24,14 @@ public class MainMenu implements Initializable
     private final Scene scene;
     private final FXMLLoader loader;
     private EventListener listener;
+    private String authToken;
 
     public Label username;
     public Label message;
 
     public MainMenu()
     {
+        this.authToken = "";
         this.loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource(MAIN_MENU)));
         Parent root = null;
         try
@@ -56,7 +58,12 @@ public class MainMenu implements Initializable
 
     public void setListener(EventListener listener)
     {
+        this.listener = listener;
+    }
 
+    public void setAuthToken(String authToken)
+    {
+        this.authToken = authToken;
     }
 
     // FXML Controller
@@ -81,6 +88,6 @@ public class MainMenu implements Initializable
 
     public void logout()
     {
-        // TODO pass token here listener.listen(new LogoutEvent());
+        listener.listen(new LogoutEvent(authToken));
     }
 }

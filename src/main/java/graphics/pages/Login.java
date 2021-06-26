@@ -4,6 +4,7 @@ import config.Config;
 import constants.Constants;
 import event.EventListener;
 import event.events.authentication.LoginEvent;
+import event.events.menu.ChangeFrameEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -58,7 +59,7 @@ public class Login implements Initializable
 
     public void setListener(EventListener listener)
     {
-
+        this.listener = listener;
     }
 
     // FXML Controller
@@ -77,6 +78,6 @@ public class Login implements Initializable
 
     public void back()
     {
-        // listener.listen(); TODO FirstPageEvent
+        listener.listen(new ChangeFrameEvent("firstPage"));
     }
 }

@@ -4,6 +4,7 @@ import config.Config;
 import constants.Constants;
 import controller.gameslist.GamesListResultFinalized;
 import event.EventListener;
+import event.events.menu.ChangeFrameEvent;
 import event.events.menu.GamesListEvent;
 import event.events.menu.ViewGameEvent;
 import javafx.collections.ObservableList;
@@ -66,7 +67,7 @@ public class GamesList implements Initializable
 
     public void setListener(EventListener listener)
     {
-
+        this.listener = listener;
     }
 
     // FXML Controller
@@ -128,6 +129,6 @@ public class GamesList implements Initializable
 
     public void back()
     {
-        // listener.listen(); TODO MainMenuEvent
+        listener.listen(new ChangeFrameEvent("mainMenu"));
     }
 }

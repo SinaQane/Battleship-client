@@ -3,6 +3,7 @@ package graphics.pages;
 import config.Config;
 import constants.Constants;
 import event.EventListener;
+import event.events.menu.ChangeFrameEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -50,7 +51,7 @@ public class FirstPage implements Initializable
 
     public void setListener(EventListener listener)
     {
-
+        this.listener = listener;
     }
 
     // FXML Controller
@@ -60,11 +61,11 @@ public class FirstPage implements Initializable
 
     public void login()
     {
-        // listener.listen(); TODO LoginPageEvent
+        listener.listen(new ChangeFrameEvent("login"));
     }
 
     public void signUp()
     {
-        // listener.listen(); TODO SignUpPageEvent
+        listener.listen(new ChangeFrameEvent("signUp"));
     }
 }
