@@ -1,9 +1,9 @@
 package controller;
 
 import constants.Constants;
-import graphics.GraphicalAgent;
 import event.EventSender;
 import event.Event;
+import graphics.GraphicalAgent;
 import javafx.stage.Stage;
 import model.game.Game;
 import model.Board;

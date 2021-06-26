@@ -2,7 +2,7 @@ package graphics;
 
 import event.EventListener;
 import event.events.gameplay.GetBoardEvent;
-import graphics.firstpage.FirstPage;
+import graphics.pages.FirstPage;
 import javafx.stage.Stage;
 import model.game.Game;
 import util.Loop;

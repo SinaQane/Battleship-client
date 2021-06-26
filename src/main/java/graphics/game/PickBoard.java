@@ -1,4 +1,4 @@
 package graphics.game;
 
-public class GameFXML {
+public class PickBoard {
 }
