@@ -2,6 +2,9 @@ package graphics.pages;
 
 import config.Config;
 import constants.Constants;
+import event.Event;
+import event.EventListener;
+import event.events.authentication.SignupEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -9,8 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import listener.AuthListener;
-import listener.ButtonListener;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,9 +25,8 @@ public class SignUp implements Initializable
 
     private final Scene scene;
     private final FXMLLoader loader;
+    private EventListener listener;
 
-    private final ButtonListener buttonListener = new ButtonListener();
-    private final AuthListener authListener = new AuthListener();
     public TextField usernameTextField;
     public PasswordField passwordTextField;
     public Text messageText;
@@ -57,6 +57,11 @@ public class SignUp implements Initializable
         return this.scene;
     }
 
+    public void setListener(EventListener listener)
+    {
+
+    }
+
     // FXML Controller
 
     @Override
@@ -68,11 +73,11 @@ public class SignUp implements Initializable
         String password =passwordTextField.getText();
         usernameTextField.clear();
         passwordTextField.clear();
-        authListener.eventOccurred("signup", username, password);
+        listener.listen(new SignupEvent(username, password));
     }
 
     public void back()
     {
-        buttonListener.eventOccurred("firstpage");
+        // listener.listen(); TODO FirstPageEvent
     }
 }

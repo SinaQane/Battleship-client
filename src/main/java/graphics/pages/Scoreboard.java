@@ -3,6 +3,7 @@ package graphics.pages;
 import config.Config;
 import constants.Constants;
 import controller.scoreboard.ScoreboardResultFinalized;
+import event.EventListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,7 +15,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
-import listener.ButtonListener;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,9 +26,9 @@ public class Scoreboard implements Initializable
     private static final String SCOREBOARD = new Config(Constants.CONFIG_ADDRESS)
             .getProperty(String.class,"scoreboard").orElse("");
 
-    private final ButtonListener buttonListener = new ButtonListener();
     private final Scene scene;
     private final FXMLLoader loader;
+    private EventListener listener;
 
     private ObservableList<ScoreboardResultFinalized> scoreboard;
 
@@ -59,6 +59,11 @@ public class Scoreboard implements Initializable
     public Scene getScene()
     {
         return this.scene;
+    }
+
+    public void setListener(EventListener listener)
+    {
+
     }
 
     // FXML Controller
@@ -96,6 +101,6 @@ public class Scoreboard implements Initializable
 
     public void back()
     {
-        buttonListener.eventOccurred("mainmenu");
+        // listener.listen(); TODO MainMenuEvent
     }
 }

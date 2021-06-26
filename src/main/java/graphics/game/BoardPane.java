@@ -83,6 +83,22 @@ public class BoardPane implements Initializable
         }
     }
 
+    public void enableButtons(boolean b)
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            for (int j = 0; j < 10; j++)
+            {
+                buttons[i][j].setDisable(!b);
+            }
+        }
+    }
+
+    public void paintButton(int x, int y, String color)
+    {
+        buttons[x][y].setStyle(String.format("-fx-background-color: %s", color));
+    }
+
     public void clickOnButton(int x, int y)
     {
 

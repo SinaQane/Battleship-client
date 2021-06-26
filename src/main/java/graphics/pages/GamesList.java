@@ -3,6 +3,9 @@ package graphics.pages;
 import config.Config;
 import constants.Constants;
 import controller.gameslist.GamesListResultFinalized;
+import event.EventListener;
+import event.events.menu.GamesListEvent;
+import event.events.menu.ViewGameEvent;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,8 +14,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
-import listener.ButtonListener;
-import listener.ViewGameListener;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,9 +27,8 @@ public class GamesList implements Initializable
 
     private final Scene scene;
     private final FXMLLoader loader;
+    private EventListener listener;
 
-    private final ButtonListener buttonListener = new ButtonListener();
-    private final ViewGameListener gameListener = new ViewGameListener();
     public Button backButton;
     public Button viewGameButton;
     public TextField gameTextBox;
@@ -62,6 +62,11 @@ public class GamesList implements Initializable
     public Scene getScene()
     {
         return this.scene;
+    }
+
+    public void setListener(EventListener listener)
+    {
+
     }
 
     // FXML Controller
@@ -116,13 +121,13 @@ public class GamesList implements Initializable
         try
         {
             int index = Integer.parseInt(game);
-            gameListener.eventOccurred(index);
+            listener.listen(new ViewGameEvent(index));
         }
         catch (Exception ignored) {}
     }
 
     public void back()
     {
-        buttonListener.eventOccurred("mainmenu");
+        // listener.listen(); TODO MainMenuEvent
     }
 }

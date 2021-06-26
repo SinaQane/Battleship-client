@@ -2,11 +2,11 @@ package graphics.pages;
 
 import config.Config;
 import constants.Constants;
+import event.EventListener;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import listener.ButtonListener;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,8 +20,7 @@ public class FirstPage implements Initializable
 
     private final Scene scene;
     private final FXMLLoader loader;
-
-    private final ButtonListener buttonListener = new ButtonListener();
+    private EventListener listener;
 
     public FirstPage()
     {
@@ -49,6 +48,11 @@ public class FirstPage implements Initializable
         return this.scene;
     }
 
+    public void setListener(EventListener listener)
+    {
+
+    }
+
     // FXML Controller
 
     @Override
@@ -56,11 +60,11 @@ public class FirstPage implements Initializable
 
     public void login()
     {
-        buttonListener.eventOccurred("login");
+        // listener.listen(); TODO LoginPageEvent
     }
 
     public void signUp()
     {
-        buttonListener.eventOccurred("signup");
+        // listener.listen(); TODO SignUpPageEvent
     }
 }

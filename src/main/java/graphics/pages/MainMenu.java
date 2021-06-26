@@ -2,13 +2,14 @@ package graphics.pages;
 
 import config.Config;
 import constants.Constants;
+import event.EventListener;
+import event.events.authentication.LogoutEvent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import listener.ButtonListener;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,8 +23,8 @@ public class MainMenu implements Initializable
 
     private final Scene scene;
     private final FXMLLoader loader;
+    private EventListener listener;
 
-    private final ButtonListener buttonListener = new ButtonListener();
     public Label username;
     public Label message;
 
@@ -53,6 +54,11 @@ public class MainMenu implements Initializable
         return this.scene;
     }
 
+    public void setListener(EventListener listener)
+    {
+
+    }
+
     // FXML Controller
 
     @Override
@@ -75,6 +81,6 @@ public class MainMenu implements Initializable
 
     public void logout()
     {
-        buttonListener.eventOccurred("logout");
+        // TODO pass token here listener.listen(new LogoutEvent());
     }
 }
