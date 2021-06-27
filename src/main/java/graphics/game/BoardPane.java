@@ -2,6 +2,8 @@ package graphics.game;
 
 import config.Config;
 import constants.Constants;
+import event.EventListener;
+import event.events.gameplay.GameMoveEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -22,11 +24,14 @@ public class BoardPane implements Initializable
 
     private final Scene scene;
     private final FXMLLoader loader;
+    private EventListener listener;
+    private final String rivalToken;
 
     private final Button[][] buttons = new Button[10][10];
 
-    public BoardPane()
+    public BoardPane(String rivalToken)
     {
+        this.rivalToken = rivalToken;
         this.loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource(BOARD)));
         Parent root = null;
         try
@@ -49,6 +54,11 @@ public class BoardPane implements Initializable
     public Scene getScene()
     {
         return this.scene;
+    }
+
+    public void setListener(EventListener listener)
+    {
+        this.listener = listener;
     }
 
     // FXML Controller
@@ -101,6 +111,6 @@ public class BoardPane implements Initializable
 
     public void clickOnButton(int x, int y)
     {
-
+        listener.listen(new GameMoveEvent(rivalToken, x, y));
     }
 }
