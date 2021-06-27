@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
+import model.Board;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,12 +27,14 @@ public class BoardPane implements Initializable
     private final FXMLLoader loader;
     private EventListener listener;
     private final String rivalToken;
+    private final boolean viewHidden;
 
     private final Button[][] buttons = new Button[10][10];
 
-    public BoardPane(String rivalToken)
+    public BoardPane(String rivalToken, boolean viewHidden)
     {
         this.rivalToken = rivalToken;
+        this.viewHidden = viewHidden;
         this.loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource(BOARD)));
         Parent root = null;
         try
@@ -93,7 +96,7 @@ public class BoardPane implements Initializable
         }
     }
 
-    public void enableButtons(boolean b)
+    public void buttonsAvailable(boolean b)
     {
         for (int i = 0; i < 10; i++)
         {
@@ -101,6 +104,18 @@ public class BoardPane implements Initializable
             {
                 buttons[i][j].setDisable(!b);
             }
+        }
+    }
+
+    public void paintBoard(Board board)
+    {
+        if (viewHidden)
+        {
+            // TODO
+        }
+        else
+        {
+            // TODO
         }
     }
 

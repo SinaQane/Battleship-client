@@ -5,7 +5,6 @@ import constants.Constants;
 import controller.scoreboard.ScoreboardResultFinalized;
 import event.EventListener;
 import event.events.menu.ChangeFrameEvent;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.collections.ObservableList;
@@ -22,7 +21,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class Scoreboard implements Initializable
+public class Scoreboard implements Initializable // TODO update list
 {
     private static final String SCOREBOARD = new Config(Constants.CONFIG_ADDRESS)
             .getProperty(String.class,"scoreboard").orElse("");

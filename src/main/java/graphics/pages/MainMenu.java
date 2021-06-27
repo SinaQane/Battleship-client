@@ -4,6 +4,10 @@ import config.Config;
 import constants.Constants;
 import event.EventListener;
 import event.events.authentication.LogoutEvent;
+import event.events.menu.GamesListEvent;
+import event.events.menu.ScoreboardEvent;
+import event.events.menu.ViewGameEvent;
+import event.events.startgame.PickBoardEvent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -71,19 +75,19 @@ public class MainMenu implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources) {}
 
-    public void newGame(ActionEvent actionEvent)
+    public void newGame()
     {
-
+        listener.listen(new PickBoardEvent(authToken));
     }
 
-    public void viewGames(ActionEvent actionEvent)
+    public void viewGames()
     {
-
+        listener.listen(new GamesListEvent());
     }
 
-    public void scoreboard(ActionEvent actionEvent)
+    public void scoreboard()
     {
-
+        listener.listen(new ScoreboardEvent());
     }
 
     public void logout()

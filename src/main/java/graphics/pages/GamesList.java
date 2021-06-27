@@ -5,7 +5,6 @@ import constants.Constants;
 import controller.gameslist.GamesListResultFinalized;
 import event.EventListener;
 import event.events.menu.ChangeFrameEvent;
-import event.events.menu.GamesListEvent;
 import event.events.menu.ViewGameEvent;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +20,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class GamesList implements Initializable
+public class GamesList implements Initializable // TODO update list
 {
     private static final String GAMES_LIST = new Config(Constants.CONFIG_ADDRESS)
             .getProperty(String.class,"gamesList").orElse("");

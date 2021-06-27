@@ -2,7 +2,6 @@ package graphics.pages;
 
 import config.Config;
 import constants.Constants;
-import event.Event;
 import event.EventListener;
 import event.events.authentication.SignupEvent;
 import event.events.menu.ChangeFrameEvent;

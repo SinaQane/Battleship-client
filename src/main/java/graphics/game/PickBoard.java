@@ -4,7 +4,6 @@ import config.Config;
 import constants.Constants;
 import event.EventListener;
 import event.events.menu.ChangeFrameEvent;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -13,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import model.Board;
 
 import java.io.IOException;
 import java.net.URL;
@@ -27,15 +27,20 @@ public class PickBoard implements Initializable
     private final Scene scene;
     private final FXMLLoader loader;
     private EventListener listener;
+    private int remainingAttempts;
+    private final Board[] boards;
 
     public Label timerText;
     public Text attemptsText;
     public Pane boardPane;
+    public Button selectButton;
     public Button cancelButton;
     public Button nextButton;
 
-    public PickBoard()
+    public PickBoard(Board[] boards)
     {
+        this.remainingAttempts = 2;
+        this.boards = boards;
         this.loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource(PICK_BOARD)));
         Parent root = null;
         try
@@ -70,12 +75,22 @@ public class PickBoard implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-
+        // TODO
     }
 
-    public void next(ActionEvent actionEvent)
+    public void select()
     {
+        // TODO
+    }
 
+    public void next()
+    {
+        if (remainingAttempts > 0)
+        {
+            remainingAttempts--;
+            attemptsText.setText("Remaining attempts: " + remainingAttempts);
+            // TODO
+        }
     }
 
     public void cancel()

@@ -12,7 +12,7 @@
             <Font size="20.0" />
         </font>
     </Label>
-    <Button fx:id="cancelButton" layoutX="354.0" layoutY="567.0" mnemonicParsing="false" onAction="#cancel" prefHeight="28.0" prefWidth="97.0" text="Cancel">
+    <Button fx:id="cancelButton" layoutX="303.0" layoutY="567.0" mnemonicParsing="false" onAction="#cancel" prefHeight="28.0" prefWidth="97.0" text="Cancel">
         <font>
             <Font size="14.0" />
         </font>
@@ -24,7 +24,12 @@
         </font>
     </Label>
     <Text fx:id="attemptsText" fill="WHITE" layoutX="296.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Remaining attempts: 2" textAlignment="CENTER" wrappingWidth="407.7294921875" />
-   <Button fx:id="nextButton" layoutX="549.0" layoutY="567.0" mnemonicParsing="false" onAction="#next" prefHeight="28.0" prefWidth="97.0" text="Next Board">
+   <Button fx:id="nextButton" layoutX="600.0" layoutY="567.0" mnemonicParsing="false" onAction="#next" prefHeight="28.0" prefWidth="97.0" text="Next Board">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </Button>
+   <Button fx:id="selectButton" layoutX="452.0" layoutY="567.0" mnemonicParsing="false" onAction="#select" prefHeight="28.0" prefWidth="97.0" text="Ok">
       <font>
          <Font size="14.0" />
       </font>
