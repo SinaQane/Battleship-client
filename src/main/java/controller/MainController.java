@@ -85,7 +85,7 @@ public class MainController implements ResponseVisitor
     @Override
     public void signupResponse(String response)
     {
-        if (authToken.equals(""))
+        if (!response.equals(""))
         {
             graphicalAgent.setSignUpPageMessage(response);
         }
