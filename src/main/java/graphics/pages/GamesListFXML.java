@@ -101,9 +101,12 @@ public class GamesListFXML implements Initializable
         table.getColumns().add(playerTwoSuccessfulBombsColumn);
         table.getColumns().add(playerOneSunkenShips);
         table.getColumns().add(playerTwoSunkenShips);
-        table.setPrefSize(800, 600);
+        table.setPrefSize(800, 550);
         Platform.runLater(
-            () -> tableContainer.getChildren().add(0, table)
+                () -> {
+                    tableContainer.getChildren().clear();
+                    tableContainer.getChildren().add(0, table);
+                }
         );
     }
 

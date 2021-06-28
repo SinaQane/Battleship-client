@@ -87,9 +87,12 @@ public class ScoreboardFXML implements Initializable
         table.getColumns().add(usernameColumn);
         table.getColumns().add(scoreColumn);
         table.getColumns().add(isOnlineColumn);
-        table.setPrefSize(800, 600);
+        table.setPrefSize(800, 550);
         Platform.runLater(
-            () -> tableContainer.getChildren().add(0, table)
+            () -> {
+                tableContainer.getChildren().clear();
+                tableContainer.getChildren().add(0, table);
+            }
         );
     }
 
