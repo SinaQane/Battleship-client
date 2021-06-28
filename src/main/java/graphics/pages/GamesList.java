@@ -5,6 +5,7 @@ import constants.Constants;
 import controller.gameslist.GamesListResultFinalized;
 import event.EventListener;
 import event.events.menu.ChangeFrameEvent;
+import event.events.menu.GamesListEvent;
 import event.events.menu.ViewGameEvent;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import util.Loop;
 
 import java.io.IOException;
 import java.net.URL;
@@ -34,6 +36,9 @@ public class GamesList implements Initializable
     public TextField gameTextBox;
 
     private ObservableList<GamesListResultFinalized> gamesList;
+
+    private boolean displayed;
+    private Loop loop;
 
     public VBox tableContainer;
 
@@ -66,6 +71,28 @@ public class GamesList implements Initializable
     public void setListener(EventListener listener)
     {
         this.listener = listener;
+    }
+
+    public void startLoop()
+    {
+        displayed = true;
+        loop = new Loop(Constants.UPDATE_FPS, this::update);
+    }
+
+    public void stopLoop()
+    {
+        displayed = false;
+        loop.stop();
+    }
+
+    public void update()
+    {
+        listener.listen(new GamesListEvent());
+    }
+
+    public boolean isDisplayed()
+    {
+        return displayed;
     }
 
     // FXML Controller

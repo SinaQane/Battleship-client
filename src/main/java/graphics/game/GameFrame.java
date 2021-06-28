@@ -18,6 +18,11 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/*
+TODO add a loop to GameFrame just like Scoreboard and GamesList, sending GetBoard events to server.
+it should be handled in the server as well so that it won't use nextTurn function in game.
+*/
+
 public class GameFrame implements Initializable
 {
     private static final String GAME_FRAME = new Config(Constants.CONFIG_ADDRESS)

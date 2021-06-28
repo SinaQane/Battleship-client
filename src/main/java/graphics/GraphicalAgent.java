@@ -37,8 +37,26 @@ public class GraphicalAgent
         this.authToken = authToken;
     }
 
+    public void stopLoops(String displayedPage)
+    {
+        if (scoreboard.isDisplayed() && !displayedPage.equals("scoreboard"))
+        {
+            Platform.runLater(
+                    scoreboard::stopLoop
+            );
+        }
+        if (gamesList.isDisplayed() && !displayedPage.equals("gamesList"))
+        {
+            Platform.runLater(
+                    gamesList::stopLoop
+            );
+        }
+        // TODO add more conditions
+    }
+
     public void initialize()
     {
+        stopLoops("firstPage");
         Platform.runLater(
                 () -> {
                     firstPage.setListener(listener);
@@ -49,6 +67,7 @@ public class GraphicalAgent
 
     public void showLoginPage()
     {
+        stopLoops("login");
         Platform.runLater(
                 () -> {
                     loginPage.clear();
@@ -60,6 +79,7 @@ public class GraphicalAgent
 
     public void setLoginPageMessage(String message)
     {
+        stopLoops("login");
         Platform.runLater(
                 () -> loginPage.setMessage(message)
         );
@@ -67,6 +87,7 @@ public class GraphicalAgent
 
     public void showSignUpPage()
     {
+        stopLoops("signUp");
         Platform.runLater(
                 () -> {
                     signUpPage.clear();
@@ -78,6 +99,7 @@ public class GraphicalAgent
 
     public void setSignUpPageMessage(String message)
     {
+        stopLoops("signUp");
         Platform.runLater(
                 () -> signUpPage.setMessage(message)
         );
@@ -85,6 +107,7 @@ public class GraphicalAgent
 
     public void showMainMenu()
     {
+        stopLoops("mainMenu");
         Platform.runLater(
                 () -> {
                     mainMenu.clear();
@@ -97,14 +120,22 @@ public class GraphicalAgent
 
     public void setMainMenuMessage(String message)
     {
+        stopLoops("mainMenu");
         Platform.runLater(
                 () -> mainMenu.setMessage(message)
         );
 
     }
 
-    public void showScoreboard(ObservableList<ScoreboardResultFinalized> list) // TODO update scoreboard
+    public void showScoreboard(ObservableList<ScoreboardResultFinalized> list)
     {
+        stopLoops("scoreboard");
+        if (!scoreboard.isDisplayed())
+        {
+            Platform.runLater(
+                    scoreboard::startLoop
+            );
+        }
         Platform.runLater(
                 () -> {
                     scoreboard.setScoreboard(list);
@@ -115,8 +146,15 @@ public class GraphicalAgent
         );
     }
 
-    public void showGamesList(ObservableList<GamesListResultFinalized> list)  // TODO update gamesList
+    public void showGamesList(ObservableList<GamesListResultFinalized> list)
     {
+        stopLoops("gamesList");
+        if (!gamesList.isDisplayed())
+        {
+            Platform.runLater(
+                    gamesList::startLoop
+            );
+        }
         Platform.runLater(
                 () -> {
                     gamesList.setGamesList(list);

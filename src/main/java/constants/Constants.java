@@ -8,7 +8,8 @@ public class Constants
     public static final String DEFAULT_HOST = "localhost";
     public static final int DEFAULT_PORT = 8000;
     // Loop FPS Rate
-    public static final int FPS = 10;
+    public static final int EVENT_FPS = 10;
+    public static final int UPDATE_FPS = 1;
     // Board Color
     public static final String BOARD_COLOR = "#1E2425";
     // Cell Colors

@@ -5,6 +5,7 @@ import constants.Constants;
 import controller.scoreboard.ScoreboardResultFinalized;
 import event.EventListener;
 import event.events.menu.ChangeFrameEvent;
+import event.events.menu.ScoreboardEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.collections.ObservableList;
@@ -15,6 +16,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import util.Loop;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,6 +33,9 @@ public class Scoreboard implements Initializable
     private EventListener listener;
 
     private ObservableList<ScoreboardResultFinalized> scoreboard;
+
+    private boolean displayed;
+    private Loop loop;
 
     public VBox tableContainer;
 
@@ -63,6 +68,28 @@ public class Scoreboard implements Initializable
     public void setListener(EventListener listener)
     {
         this.listener = listener;
+    }
+
+    public void startLoop()
+    {
+        displayed = true;
+        loop = new Loop(Constants.UPDATE_FPS, this::update);
+    }
+
+    public void stopLoop()
+    {
+        displayed = false;
+        loop.stop();
+    }
+
+    public void update()
+    {
+        listener.listen(new ScoreboardEvent());
+    }
+
+    public boolean isDisplayed()
+    {
+        return displayed;
     }
 
     // FXML Controller
