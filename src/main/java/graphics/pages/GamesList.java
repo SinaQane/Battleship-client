@@ -20,7 +20,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class GamesList implements Initializable // TODO update list
+public class GamesList implements Initializable
 {
     private static final String GAMES_LIST = new Config(Constants.CONFIG_ADDRESS)
             .getProperty(String.class,"gamesList").orElse("");
@@ -37,9 +37,8 @@ public class GamesList implements Initializable // TODO update list
 
     public VBox tableContainer;
 
-    public GamesList(ObservableList<GamesListResultFinalized> gamesList)
+    public GamesList()
     {
-        this.gamesList = gamesList;
         this.loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource(GAMES_LIST)));
         Parent root = null;
         try
@@ -72,7 +71,15 @@ public class GamesList implements Initializable // TODO update list
     // FXML Controller
 
     @Override
-    public void initialize(URL location, ResourceBundle resources)
+    public void initialize(URL location, ResourceBundle resources) {}
+
+    public void setGamesList(ObservableList<GamesListResultFinalized> gamesList)
+    {
+        this.gamesList = gamesList;
+        updateGamesList();
+    }
+
+    public void updateGamesList()
     {
         TableView<GamesListResultFinalized> table = new TableView<>();
         TableColumn<GamesListResultFinalized, Integer> indexColumn = new TableColumn<>("Index");
@@ -109,11 +116,6 @@ public class GamesList implements Initializable // TODO update list
         tableContainer.getChildren().add(0, table);
     }
 
-    public void setGamesList(ObservableList<GamesListResultFinalized> gamesList)
-    {
-        this.gamesList = gamesList;
-    }
-
     public void viewGame()
     {
         String game = gameTextBox.getText();
@@ -128,6 +130,7 @@ public class GamesList implements Initializable // TODO update list
 
     public void back()
     {
+        gameTextBox.clear();
         listener.listen(new ChangeFrameEvent("mainMenu"));
     }
 }

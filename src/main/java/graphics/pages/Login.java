@@ -67,17 +67,30 @@ public class Login implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources) {}
 
+    public void setMessage(String message)
+    {
+        messageText.setText(message);
+        messageText.setVisible(true);
+    }
+
+    public void clear()
+    {
+        usernameTextField.clear();
+        passwordTextField.clear();
+        messageText.setVisible(false);
+    }
+
     public void login()
     {
         String username =  usernameTextField.getText();
         String password =passwordTextField.getText();
-        usernameTextField.clear();
-        passwordTextField.clear();
+        clear();
         listener.listen(new LoginEvent(username, password));
     }
 
     public void back()
     {
+        clear();
         listener.listen(new ChangeFrameEvent("firstPage"));
     }
 }

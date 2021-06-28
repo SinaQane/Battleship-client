@@ -20,7 +20,7 @@ public class Main extends Application
     }
 
     @Override
-    public void start(Stage primaryStage)
+    public void start(Stage stage)
     {
         config = new Config(Constants.CONFIG_ADDRESS);
         host = config.getProperty(String.class,"host").orElse(Constants.DEFAULT_HOST);
@@ -38,7 +38,7 @@ public class Main extends Application
         try
         {
             assert socket != null;
-            controller = new MainController(new SocketEventSender(socket), primaryStage);
+            controller = new MainController(new SocketEventSender(socket), stage);
         }
         catch (IOException e)
         {

@@ -24,11 +24,10 @@ public class MainController implements ResponseVisitor
     private String authToken;
     private User user;
 
-    public MainController(EventSender eventSender, Stage primaryStage)
+    public MainController(EventSender eventSender, Stage stage)
     {
         loop = new Loop(Constants.FPS, this::sendEvents);
-        graphicalAgent = new GraphicalAgent(this::addEvent);
-        graphicalAgent.setStage(primaryStage);
+        graphicalAgent = new GraphicalAgent(this::addEvent, stage);
         this.eventSender = eventSender;
     }
 

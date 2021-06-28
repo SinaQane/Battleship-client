@@ -21,7 +21,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class Scoreboard implements Initializable // TODO update list
+public class Scoreboard implements Initializable
 {
     private static final String SCOREBOARD = new Config(Constants.CONFIG_ADDRESS)
             .getProperty(String.class,"scoreboard").orElse("");
@@ -34,9 +34,8 @@ public class Scoreboard implements Initializable // TODO update list
 
     public VBox tableContainer;
 
-    public Scoreboard(ObservableList<ScoreboardResultFinalized> scoreboard)
+    public Scoreboard()
     {
-        this.scoreboard = scoreboard;
         this.loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource(SCOREBOARD)));
         Parent root = null;
         try
@@ -69,7 +68,15 @@ public class Scoreboard implements Initializable // TODO update list
     // FXML Controller
 
     @Override
-    public void initialize(URL location, ResourceBundle resources)
+    public void initialize(URL location, ResourceBundle resources) {}
+
+    public void setScoreboard(ObservableList<ScoreboardResultFinalized> scoreboard)
+    {
+        this.scoreboard = scoreboard;
+        updateScoreboard();
+    }
+
+    public void updateScoreboard()
     {
         TableView<ScoreboardResultFinalized> table = new TableView<>();
         TableColumn<ScoreboardResultFinalized, Integer> rankColumn = new TableColumn<>("Rank");
@@ -92,11 +99,6 @@ public class Scoreboard implements Initializable // TODO update list
         table.getColumns().add(isOnlineColumn);
         table.setPrefSize(800, 600);
         tableContainer.getChildren().add(0, table);
-    }
-
-    public void setScoreboard(ObservableList<ScoreboardResultFinalized> scoreboard)
-    {
-        this.scoreboard = scoreboard;
     }
 
     public void back()

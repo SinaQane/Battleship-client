@@ -6,9 +6,7 @@ import event.EventListener;
 import event.events.authentication.LogoutEvent;
 import event.events.menu.GamesListEvent;
 import event.events.menu.ScoreboardEvent;
-import event.events.menu.ViewGameEvent;
 import event.events.startgame.PickBoardEvent;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -30,8 +28,7 @@ public class MainMenu implements Initializable
     private EventListener listener;
     private String authToken;
 
-    public Label username;
-    public Label message;
+    public Label messageText;
 
     public MainMenu()
     {
@@ -75,23 +72,38 @@ public class MainMenu implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources) {}
 
+    public void setMessage(String message)
+    {
+        messageText.setText(message);
+        messageText.setVisible(true);
+    }
+
+    public void clear()
+    {
+        messageText.setVisible(false);
+    }
+
     public void newGame()
     {
+        clear();
         listener.listen(new PickBoardEvent(authToken));
     }
 
     public void viewGames()
     {
+        clear();
         listener.listen(new GamesListEvent());
     }
 
     public void scoreboard()
     {
+        clear();
         listener.listen(new ScoreboardEvent());
     }
 
     public void logout()
     {
+        clear();
         listener.listen(new LogoutEvent(authToken));
     }
 }
