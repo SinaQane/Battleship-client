@@ -1,15 +1,13 @@
-graphics/game/GameFrameFXML.java
- graphics.game.GameFrameFXML
-controller/gameslist/GamesListResultFinalized.java
- controller.gameslist.GamesListResultFinalized
-Main.java
- Main
-controller/scoreboard/ScoreboardController.java
- controller.scoreboard.ScoreboardController
-controller/scoreboard/ScoreboardResultFinalized.java
- controller.scoreboard.ScoreboardResultFinalized
 constants/ClientConstants.java
  constants.ClientConstants
+controller/gameslist/GamesListResultFinalized.java
+ controller.gameslist.GamesListResultFinalized
+controller/scoreboard/ScoreboardResultFinalized.java
+ controller.scoreboard.ScoreboardResultFinalized
+controller/scoreboard/ScoreboardController.java
+ controller.scoreboard.ScoreboardController
+Main.java
+ Main
 graphics/pages/LoginFXML.java
  graphics.pages.LoginFXML
 controller/gameslist/GamesListController.java
@@ -28,31 +26,33 @@ graphics/game/BoardPane.java
  graphics.game.BoardPane
 controller/MainController.java
  controller.MainController
-graphics/game/PickBoard.java
- graphics.game.PickBoard
+graphics/pages/GamesList.java
+ graphics.pages.GamesList
+graphics/game/GameFrameFXML.java
+ graphics.game.GameFrameFXML
 graphics/pages/FirstPage.java
  graphics.pages.FirstPage
 graphics/pages/SignUp.java
  graphics.pages.SignUp
-graphics/game/PickBoardFXML.java
- graphics.game.PickBoardFXML
+graphics/pages/ScoreboardFXML.java
+ graphics.pages.ScoreboardFXML
 graphics/pages/MainMenu.java
  graphics.pages.MainMenu
-graphics/game/BoardPaneFXML.java
- graphics.game.BoardPaneFXML
+graphics/pages/Scoreboard.java
+ graphics.pages.Scoreboard
 event/EventListener.java
  event.EventListener
 event/SocketEventSender.java
  event.SocketEventSender
-graphics/pages/Login.java
- graphics.pages.Login
-graphics/pages/Scoreboard.java
- graphics.pages.Scoreboard
+graphics/game/PickBoard.java
+ graphics.game.PickBoard
 graphics/pages/GamesListFXML.java
  graphics.pages.GamesListFXML
-graphics/pages/GamesList.java
- graphics.pages.GamesList
+graphics/game/PickBoardFXML.java
+ graphics.game.PickBoardFXML
+graphics/game/BoardPaneFXML.java
+ graphics.game.BoardPaneFXML
 graphics/GraphicalAgent.java
  graphics.GraphicalAgent
-graphics/pages/ScoreboardFXML.java
- graphics.pages.ScoreboardFXML
+graphics/pages/Login.java
+ graphics.pages.Login

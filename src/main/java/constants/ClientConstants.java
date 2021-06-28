@@ -15,6 +15,6 @@ public class ClientConstants
     // Cell Colors
     public static final String NORMAL_CELL = "#536878"; // Blue Grey
     public static final String MISSED_BOMB = "#212121"; // Dark Gray
-    public static final String INTACT_SHIP = "#36454F"; // Dark Blue
+    public static final String INTACT_SHIP = "#06170E"; // Dark Green
     public static final String BOMBED_SHIP = "#854442"; // Cappuccino Red
 }

@@ -58,17 +58,17 @@ public class GraphicalAgent
     public void initialize()
     {
         Platform.runLater(
-                () -> {
-                    firstPage.getFXML().setListener(listener);
-                    stage.setTitle("Battleship");
-                    stage.setResizable(false);
-                    stage.setOnHidden(e -> {
-                        listener.listen(new LogoutEvent(authToken)); // TODO test
-                        Platform.exit();
-                    });
-                    stage.show();
-                    stage.setScene(firstPage.getScene());
-                }
+            () -> {
+                firstPage.getFXML().setListener(listener);
+                stage.setTitle("Battleship");
+                stage.setResizable(false);
+                stage.setOnHidden(e -> {
+                    listener.listen(new LogoutEvent(authToken));
+                    Platform.exit();
+                });
+                stage.show();
+                stage.setScene(firstPage.getScene());
+            }
         );
     }
 
@@ -76,10 +76,10 @@ public class GraphicalAgent
     {
         stopLoops("firstPage");
         Platform.runLater(
-                () -> {
-                    firstPage.getFXML().setListener(listener);
-                    stage.setScene(firstPage.getScene());
-                }
+            () -> {
+                firstPage.getFXML().setListener(listener);
+                stage.setScene(firstPage.getScene());
+            }
         );
     }
 
@@ -87,11 +87,11 @@ public class GraphicalAgent
     {
         stopLoops("login");
         Platform.runLater(
-                () -> {
-                    loginPage.getFXML().clear();
-                    loginPage.getFXML().setListener(listener);
-                    stage.setScene(loginPage.getScene());
-                }
+            () -> {
+                loginPage.getFXML().clear();
+                loginPage.getFXML().setListener(listener);
+                stage.setScene(loginPage.getScene());
+            }
         );
     }
 
@@ -99,7 +99,7 @@ public class GraphicalAgent
     {
         stopLoops("login");
         Platform.runLater(
-                () -> loginPage.getFXML().setMessage(message)
+            () -> loginPage.getFXML().setMessage(message)
         );
     }
 
@@ -107,11 +107,11 @@ public class GraphicalAgent
     {
         stopLoops("signUp");
         Platform.runLater(
-                () -> {
-                    signUpPage.getFXML().clear();
-                    signUpPage.getFXML().setListener(listener);
-                    stage.setScene(signUpPage.getScene());
-                }
+            () -> {
+                signUpPage.getFXML().clear();
+                signUpPage.getFXML().setListener(listener);
+                stage.setScene(signUpPage.getScene());
+            }
         );
     }
 
@@ -119,7 +119,7 @@ public class GraphicalAgent
     {
         stopLoops("signUp");
         Platform.runLater(
-                () -> signUpPage.getFXML().setMessage(message)
+            () -> signUpPage.getFXML().setMessage(message)
         );
     }
 
@@ -127,12 +127,12 @@ public class GraphicalAgent
     {
         stopLoops("mainMenu");
         Platform.runLater(
-                () -> {
-                    mainMenu.getFXML().clear();
-                    mainMenu.getFXML().setListener(listener);
-                    mainMenu.getFXML().setAuthToken(authToken);
-                    stage.setScene(mainMenu.getScene());
-                }
+            () -> {
+                mainMenu.getFXML().clear();
+                mainMenu.getFXML().setListener(listener);
+                mainMenu.getFXML().setAuthToken(authToken);
+                stage.setScene(mainMenu.getScene());
+            }
         );
     }
 
@@ -140,7 +140,7 @@ public class GraphicalAgent
     {
         stopLoops("mainMenu");
         Platform.runLater(
-                () -> mainMenu.getFXML().setMessage(message)
+            () -> mainMenu.getFXML().setMessage(message)
         );
 
     }
@@ -155,12 +155,12 @@ public class GraphicalAgent
             );
         }
         Platform.runLater(
-                () -> {
-                    scoreboard.getFXML().setScoreboard(list);
-                    scoreboard.getFXML().updateScoreboard();
-                    scoreboard.getFXML().setListener(listener);
-                    stage.setScene(scoreboard.getScene());
-                }
+            () -> {
+                scoreboard.getFXML().setScoreboard(list);
+                scoreboard.getFXML().updateScoreboard();
+                scoreboard.getFXML().setListener(listener);
+                stage.setScene(scoreboard.getScene());
+            }
         );
     }
 
@@ -174,25 +174,26 @@ public class GraphicalAgent
             );
         }
         Platform.runLater(
-                () -> {
-                    gamesList.getFXML().setGamesList(list);
-                    gamesList.getFXML().updateGamesList();
-                    gamesList.getFXML().setListener(listener);
-                    stage.setScene(gamesList.getScene());
-                }
+            () -> {
+                gamesList.getFXML().setGamesList(list);
+                gamesList.getFXML().updateGamesList();
+                gamesList.getFXML().setListener(listener);
+                stage.setScene(gamesList.getScene());
+            }
         );
     }
 
     public void showBoardPickingPage(Board[] boards)
     {
         Platform.runLater(
-                () -> {
-                    PickBoard pickBoardPage = new PickBoard();
-                    pickBoardPage.getFXML().setListener(listener);
-                    pickBoardPage.getFXML().setBoards(boards);
-                    pickBoardPage.getFXML().startLoop();
-                    stage.setScene(pickBoardPage.getScene());
-                }
+            () -> {
+                PickBoard pickBoardPage = new PickBoard();
+                pickBoardPage.getFXML().setListener(listener);
+                pickBoardPage.getFXML().setToken(authToken);
+                pickBoardPage.getFXML().setBoards(boards);
+                pickBoardPage.getFXML().startLoop();
+                stage.setScene(pickBoardPage.getScene());
+            }
         );
     }
 

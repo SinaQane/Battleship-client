@@ -3,6 +3,7 @@ package graphics.game;
 import constants.ClientConstants;
 import event.EventListener;
 import event.events.menu.ChangeFrameEvent;
+import event.events.startgame.StartGameEvent;
 import javafx.application.Platform;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -23,6 +24,7 @@ public class PickBoardFXML implements Initializable
     private int timeLeftSeconds = 30;
     private Board[] boards;
     private Loop loop;
+    private String token;
 
     public Label timerText;
     public Text attemptsText;
@@ -42,6 +44,11 @@ public class PickBoardFXML implements Initializable
     public void setBoards(Board[] boards)
     {
         this.boards = boards;
+    }
+
+    public void setToken(String token)
+    {
+        this.token = token;
     }
 
     public void startLoop()
@@ -88,7 +95,7 @@ public class PickBoardFXML implements Initializable
 
     public void select()
     {
-        // TODO
+        listener.listen(new StartGameEvent(token, boards[remainingAttempts]));
     }
 
     public void next()

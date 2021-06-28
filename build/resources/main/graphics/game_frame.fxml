@@ -8,14 +8,14 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0"
       prefWidth="1000.0" style="-fx-background-color: #1E2425;" xmlns="http://javafx.com/javafx/16"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.game.GameFrame">
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.game.GameFrameFXML">
    <Label fx:id="gameMessageText" alignment="CENTER" layoutY="28.0" prefHeight="19.0" prefWidth="1000.0"
           text="Game Message" textFill="#f6f6fc">
       <font>
          <Font size="20.0"/>
       </font>
    </Label>
-   <Button fx:id="backButton" layoutX="474.0" layoutY="556.0" mnemonicParsing="false" onAction="#back" text="Back">
+   <Button layoutX="474.0" layoutY="556.0" mnemonicParsing="false" onAction="#back" text="Back">
       <font>
          <Font size="14.0"/>
       </font>
