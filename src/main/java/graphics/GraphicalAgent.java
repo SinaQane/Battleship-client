@@ -4,6 +4,7 @@ import controller.gameslist.GamesListResultFinalized;
 import controller.scoreboard.ScoreboardResultFinalized;
 import event.EventListener;
 import event.events.authentication.LogoutEvent;
+import graphics.game.GameFrame;
 import graphics.game.PickBoard;
 import graphics.pages.*;
 import javafx.application.Platform;
@@ -11,13 +12,10 @@ import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 import model.Board;
 import model.game.Game;
-import util.Loop;
 
 public class GraphicalAgent
 {
     private String authToken;
-    private Game currentGame;
-    private Loop loop;
 
     private final EventListener listener;
     private final Stage stage;
@@ -28,6 +26,7 @@ public class GraphicalAgent
     private final SignUp signUpPage = new SignUp();
     private final Scoreboard scoreboard = new Scoreboard();
     private final GamesList gamesList = new GamesList();
+    private GameFrame gameFrame;
 
     public GraphicalAgent(EventListener listener, Stage stage)
     {
@@ -54,7 +53,6 @@ public class GraphicalAgent
                     gamesList.getFXML()::stopLoop
             );
         }
-        // TODO add more conditions
     }
 
     public void initialize()
@@ -198,25 +196,40 @@ public class GraphicalAgent
         );
     }
 
-    // These functions should be worked on later (They're too important)
-
-    public void visitGame()
+    public void watchGame(Game game)
     {
-        // TODO
+        Platform.runLater(
+            () -> {
+                gameFrame = new GameFrame();
+                gameFrame.getFXML().setListener(listener);
+                gameFrame.getFXML().setGame(game);
+                gameFrame.getFXML().setMode(0);
+                gameFrame.getFXML().setPlayerToken(authToken);
+                gameFrame.getFXML().startLoop();
+                stage.setScene(gameFrame.getScene());
+            }
+        );
     }
 
-    private void updateWatchingGameBoard()
+    public void playGame(Game game, int player)
     {
-        // TODO Same as updateCurrentGameBoard()
+        Platform.runLater(
+            () -> {
+                gameFrame = new GameFrame();
+                gameFrame.getFXML().setListener(listener);
+                gameFrame.getFXML().setGame(game);
+                gameFrame.getFXML().setMode(player);
+                gameFrame.getFXML().setPlayerToken(authToken);
+                gameFrame.getFXML().startLoop();
+                stage.setScene(gameFrame.getScene());
+            }
+        );
     }
 
-    public void showGamePage()
+    public void updateGameBoard(Game game)
     {
-        // TODO
-    }
-
-    private void updateCurrentGameBoard()
-    {
-        // TODO listener.listen(new GetBoardEvent(authToken));
+        Platform.runLater(
+            () -> gameFrame.getFXML().setGame(game)
+        );
     }
 }

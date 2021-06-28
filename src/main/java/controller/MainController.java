@@ -25,9 +25,7 @@ public class MainController implements ResponseVisitor
     private final GraphicalAgent graphicalAgent;
     private final EventSender eventSender;
     private final List<Event> events = new LinkedList<>();
-    private String authToken = "";
     private final Loop loop;
-    private User user;
 
     public MainController(EventSender eventSender, Stage stage)
     {
@@ -74,11 +72,8 @@ public class MainController implements ResponseVisitor
         }
         else
         {
-            this.user = user;
-            this.authToken = authToken;
             graphicalAgent.setAuthToken(authToken);
             graphicalAgent.showMainMenu();
-            // does graphicalAgent need user?
         }
     }
 
@@ -100,11 +95,8 @@ public class MainController implements ResponseVisitor
     {
         if (response.equals(""))
         {
-            user = null;
-            authToken = "";
             graphicalAgent.setAuthToken("");
             graphicalAgent.showFirstPage();
-            // does graphicalAgent need user?
         }
         else
         {
@@ -155,18 +147,18 @@ public class MainController implements ResponseVisitor
     @Override
     public void gameplay(Game game)
     {
-
+        graphicalAgent.updateGameBoard(game);
     }
 
     @Override
     public void viewGame(Game game)
     {
-
+        graphicalAgent.watchGame(game);
     }
 
     @Override
-    public void startGame(Game game)
+    public void startGame(Game game, int side)
     {
-
+        graphicalAgent.playGame(game, side);
     }
 }
