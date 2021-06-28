@@ -1,9 +1,14 @@
 package controller;
 
-import constants.Constants;
+import constants.ClientConstants;
+import controller.gameslist.GamesListController;
+import controller.gameslist.GamesListResultFinalized;
+import controller.scoreboard.ScoreboardController;
+import controller.scoreboard.ScoreboardResultFinalized;
 import event.EventSender;
 import event.Event;
 import graphics.GraphicalAgent;
+import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 import model.game.Game;
 import model.Board;
@@ -20,13 +25,13 @@ public class MainController implements ResponseVisitor
     private final GraphicalAgent graphicalAgent;
     private final EventSender eventSender;
     private final List<Event> events = new LinkedList<>();
+    private String authToken = "";
     private final Loop loop;
-    private String authToken;
     private User user;
 
     public MainController(EventSender eventSender, Stage stage)
     {
-        loop = new Loop(Constants.EVENT_FPS, this::sendEvents);
+        loop = new Loop(ClientConstants.EVENT_FPS, this::sendEvents);
         graphicalAgent = new GraphicalAgent(this::addEvent, stage);
         this.eventSender = eventSender;
     }
@@ -65,36 +70,79 @@ public class MainController implements ResponseVisitor
     {
         if (authToken.equals(""))
         {
-            // graphicalAgent.getLoginPage().getText().setText(response);
+            graphicalAgent.setLoginPageMessage(response);
         }
         else
         {
-            graphicalAgent.setAuthToken(authToken);
-            this.authToken = authToken;
             this.user = user;
+            this.authToken = authToken;
+            graphicalAgent.setAuthToken(authToken);
+            graphicalAgent.showMainMenu();
             // does graphicalAgent need user?
-            // graphicalAgent.showMainMenu();
         }
     }
 
     @Override
     public void signupResponse(String response)
     {
-
+        if (authToken.equals(""))
+        {
+            graphicalAgent.setSignUpPageMessage(response);
+        }
+        else
+        {
+            graphicalAgent.showFirstPage();
+        }
     }
 
     @Override
     public void logoutResponse(String response)
     {
-        if (response.equals("logout successful"))
+        if (response.equals(""))
         {
-            graphicalAgent.setAuthToken("");
             user = null;
+            authToken = "";
+            graphicalAgent.setAuthToken("");
+            graphicalAgent.showFirstPage();
             // does graphicalAgent need user?
         }
         else
         {
-            // graphicalAgent.getMainMenu().getText().setText(response);
+            graphicalAgent.setMainMenuMessage(response);
+        }
+    }
+
+    @Override
+    public void gamesList(Game[] games)
+    {
+        ObservableList<GamesListResultFinalized> gamesList = GamesListController.getGamesList(games);
+        graphicalAgent.showGamesList(gamesList);
+    }
+
+    @Override
+    public void scoreboard(User[] users)
+    {
+        ObservableList<ScoreboardResultFinalized> scoreboard = ScoreboardController.getScoreboard(users);
+        graphicalAgent.showScoreboard(scoreboard);
+    }
+
+    @Override
+    public void changeFrame(String frame)
+    {
+        switch (frame)
+        {
+            case "firstPage":
+                graphicalAgent.showFirstPage();
+                break;
+            case "login":
+                graphicalAgent.showLoginPage();
+                break;
+            case "signUp":
+                graphicalAgent.showSignUpPage();
+                break;
+            case "mainMenu":
+                graphicalAgent.showMainMenu();
+                break;
         }
     }
 
@@ -105,30 +153,9 @@ public class MainController implements ResponseVisitor
     }
 
     @Override
-    public void gamesList(Game[] games)
-    {
-
-    }
-
-    @Override
-    public void scoreboard(User[] users)
-    {
-
-    }
-
-    @Override
     public void viewGame(Game game)
     {
 
-    }
-
-    @Override
-    public void changeFrame(String frame)
-    {
-        switch (frame)
-        {
-
-        }
     }
 
     @Override

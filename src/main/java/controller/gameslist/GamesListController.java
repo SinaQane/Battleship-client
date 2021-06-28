@@ -10,7 +10,7 @@ import java.util.List;
 
 public class GamesListController
 {
-    public static ObservableList<GamesListResultFinalized> getScoreboard(Game[] games)
+    public static ObservableList<GamesListResultFinalized> getGamesList(Game[] games)
     {
         List<GamesListResultFinalized> gamesList = new LinkedList<>();
         for (int i = 0; i < games.length; i++)

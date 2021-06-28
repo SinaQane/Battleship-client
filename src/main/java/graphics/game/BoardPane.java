@@ -1,7 +1,7 @@
 package graphics.game;
 
 import config.Config;
-import constants.Constants;
+import constants.ClientConstants;
 import event.EventListener;
 import event.events.gameplay.GameMoveEvent;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 
 public class BoardPane implements Initializable
 {
-    private static final String BOARD = new Config(Constants.CONFIG_ADDRESS)
+    private static final String BOARD = new Config(ClientConstants.CONFIG_ADDRESS)
             .getProperty(String.class,"board").orElse("");
 
     private final Scene scene;
@@ -80,7 +80,7 @@ public class BoardPane implements Initializable
                 button.setPrefHeight(40);
                 button.setLayoutX(40 * i);
                 button.setLayoutY(40 * j);
-                button.setStyle(String.format("-fx-background-color: %s", Constants.NORMAL_CELL));
+                button.setStyle(String.format("-fx-background-color: %s", ClientConstants.NORMAL_CELL));
                 button.setOnAction(event -> clickOnButton(finalI, finalJ));
                 buttons[i][j] = button;
             }
@@ -91,8 +91,8 @@ public class BoardPane implements Initializable
             Line vLine = new Line((i + 1) * 40, 0, (i + 1) * 40, 400);
             hLine.strokeWidthProperty().setValue(2);
             vLine.strokeWidthProperty().setValue(2);
-            hLine.fillProperty().setValue(Paint.valueOf(Constants.BOARD_COLOR));
-            vLine.fillProperty().setValue(Paint.valueOf(Constants.BOARD_COLOR));
+            hLine.fillProperty().setValue(Paint.valueOf(ClientConstants.BOARD_COLOR));
+            vLine.fillProperty().setValue(Paint.valueOf(ClientConstants.BOARD_COLOR));
         }
     }
 

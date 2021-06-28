@@ -1,9 +1,8 @@
 package graphics.game;
 
 import config.Config;
-import constants.Constants;
+import constants.ClientConstants;
 import event.EventListener;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -25,7 +24,7 @@ it should be handled in the server as well so that it won't use nextTurn functio
 
 public class GameFrame implements Initializable
 {
-    private static final String GAME_FRAME = new Config(Constants.CONFIG_ADDRESS)
+    private static final String GAME_FRAME = new Config(ClientConstants.CONFIG_ADDRESS)
             .getProperty(String.class,"gameFrame").orElse("");
 
     private final Scene scene;

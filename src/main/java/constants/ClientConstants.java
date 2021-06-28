@@ -1,6 +1,6 @@
 package constants;
 
-public class Constants
+public class ClientConstants
 {
     // Config
     public static final String CONFIG_ADDRESS = "src/main/resources/client.properties";

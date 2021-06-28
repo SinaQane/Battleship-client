@@ -1,7 +1,7 @@
 package graphics.game;
 
 import config.Config;
-import constants.Constants;
+import constants.ClientConstants;
 import event.EventListener;
 import event.events.menu.ChangeFrameEvent;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 
 public class PickBoard implements Initializable
 {
-    private static final String PICK_BOARD = new Config(Constants.CONFIG_ADDRESS)
+    private static final String PICK_BOARD = new Config(ClientConstants.CONFIG_ADDRESS)
             .getProperty(String.class,"pickBoard").orElse("");
 
     private final Scene scene;

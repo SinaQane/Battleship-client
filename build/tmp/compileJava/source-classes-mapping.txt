@@ -1,0 +1,52 @@
+controller/gameslist/GamesListController.java
+ controller.gameslist.GamesListController
+event/EventSender.java
+ event.EventSender
+graphics/game/GameFrame.java
+ graphics.game.GameFrame
+graphics/game/BoardPane.java
+ graphics.game.BoardPane
+event/EventListener.java
+ event.EventListener
+graphics/pages/Login.java
+ graphics.pages.Login
+constants/ClientConstants.java
+ constants.ClientConstants
+controller/gameslist/GamesListResultFinalized.java
+ controller.gameslist.GamesListResultFinalized
+controller/scoreboard/ScoreboardResultFinalized.java
+ controller.scoreboard.ScoreboardResultFinalized
+controller/scoreboard/ScoreboardController.java
+ controller.scoreboard.ScoreboardController
+graphics/game/PickBoard.java
+ graphics.game.PickBoard
+event/SocketEventSender.java
+ event.SocketEventSender
+graphics/pages/LoginFXML.java
+ graphics.pages.LoginFXML
+graphics/pages/FirstPageFXML.java
+ graphics.pages.FirstPageFXML
+graphics/pages/MainMenuFXML.java
+ graphics.pages.MainMenuFXML
+graphics/pages/SignUpFXML.java
+ graphics.pages.SignUpFXML
+graphics/pages/GamesListFXML.java
+ graphics.pages.GamesListFXML
+graphics/pages/GamesList.java
+ graphics.pages.GamesList
+graphics/pages/FirstPage.java
+ graphics.pages.FirstPage
+graphics/pages/SignUp.java
+ graphics.pages.SignUp
+graphics/pages/ScoreboardFXML.java
+ graphics.pages.ScoreboardFXML
+graphics/pages/MainMenu.java
+ graphics.pages.MainMenu
+graphics/pages/Scoreboard.java
+ graphics.pages.Scoreboard
+graphics/GraphicalAgent.java
+ graphics.GraphicalAgent
+Main.java
+ Main
+controller/MainController.java
+ controller.MainController

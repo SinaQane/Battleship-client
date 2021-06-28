@@ -1,27 +1,21 @@
 package graphics.pages;
 
 import config.Config;
-import constants.Constants;
-import event.EventListener;
-import event.events.menu.ChangeFrameEvent;
+import constants.ClientConstants;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
-public class FirstPage implements Initializable
+public class FirstPage
 {
-    private static final String FIRST_PAGE = new Config(Constants.CONFIG_ADDRESS)
+    private static final String FIRST_PAGE = new Config(ClientConstants.CONFIG_ADDRESS)
             .getProperty(String.class,"firstPage").orElse("");
 
     private final Scene scene;
     private final FXMLLoader loader;
-    private EventListener listener;
 
     public FirstPage()
     {
@@ -39,33 +33,13 @@ public class FirstPage implements Initializable
         this.scene = new Scene(root);
     }
 
-    public FXMLLoader getLoader()
+    public FirstPageFXML getFXML()
     {
-        return this.loader;
+        return loader.getController();
     }
 
     public Scene getScene()
     {
-        return this.scene;
-    }
-
-    public void setListener(EventListener listener)
-    {
-        this.listener = listener;
-    }
-
-    // FXML Controller
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb){}
-
-    public void login()
-    {
-        listener.listen(new ChangeFrameEvent("login"));
-    }
-
-    public void signUp()
-    {
-        listener.listen(new ChangeFrameEvent("signUp"));
+        return scene;
     }
 }

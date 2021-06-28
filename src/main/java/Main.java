@@ -1,5 +1,5 @@
 import config.Config;
-import constants.Constants;
+import constants.ClientConstants;
 import controller.MainController;
 import event.SocketEventSender;
 import javafx.application.Application;
@@ -22,9 +22,9 @@ public class Main extends Application
     @Override
     public void start(Stage stage)
     {
-        config = new Config(Constants.CONFIG_ADDRESS);
-        host = config.getProperty(String.class,"host").orElse(Constants.DEFAULT_HOST);
-        port = config.getProperty(Integer.class,"port").orElse(Constants.DEFAULT_PORT);
+        config = new Config(ClientConstants.CONFIG_ADDRESS);
+        host = config.getProperty(String.class,"host").orElse(ClientConstants.DEFAULT_HOST);
+        port = config.getProperty(Integer.class,"port").orElse(ClientConstants.DEFAULT_PORT);
         Socket socket = null;
         try
         {

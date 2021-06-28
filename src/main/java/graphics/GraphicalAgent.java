@@ -39,16 +39,16 @@ public class GraphicalAgent
 
     public void stopLoops(String displayedPage)
     {
-        if (scoreboard.isDisplayed() && !displayedPage.equals("scoreboard"))
+        if (scoreboard.getFXML().isDisplayed() && !displayedPage.equals("scoreboard"))
         {
             Platform.runLater(
-                    scoreboard::stopLoop
+                    scoreboard.getFXML()::stopLoop
             );
         }
-        if (gamesList.isDisplayed() && !displayedPage.equals("gamesList"))
+        if (gamesList.getFXML().isDisplayed() && !displayedPage.equals("gamesList"))
         {
             Platform.runLater(
-                    gamesList::stopLoop
+                    gamesList.getFXML()::stopLoop
             );
         }
         // TODO add more conditions
@@ -56,10 +56,23 @@ public class GraphicalAgent
 
     public void initialize()
     {
+        Platform.runLater(
+                () -> {
+                    firstPage.getFXML().setListener(listener);
+                    stage.setTitle("Battleship");
+                    stage.setResizable(false);
+                    stage.show();
+                    stage.setScene(firstPage.getScene());
+                }
+        );
+    }
+
+    public void showFirstPage()
+    {
         stopLoops("firstPage");
         Platform.runLater(
                 () -> {
-                    firstPage.setListener(listener);
+                    firstPage.getFXML().setListener(listener);
                     stage.setScene(firstPage.getScene());
                 }
         );
@@ -70,8 +83,8 @@ public class GraphicalAgent
         stopLoops("login");
         Platform.runLater(
                 () -> {
-                    loginPage.clear();
-                    loginPage.setListener(listener);
+                    loginPage.getFXML().clear();
+                    loginPage.getFXML().setListener(listener);
                     stage.setScene(loginPage.getScene());
                 }
         );
@@ -81,7 +94,7 @@ public class GraphicalAgent
     {
         stopLoops("login");
         Platform.runLater(
-                () -> loginPage.setMessage(message)
+                () -> loginPage.getFXML().setMessage(message)
         );
     }
 
@@ -90,8 +103,8 @@ public class GraphicalAgent
         stopLoops("signUp");
         Platform.runLater(
                 () -> {
-                    signUpPage.clear();
-                    signUpPage.setListener(listener);
+                    signUpPage.getFXML().clear();
+                    signUpPage.getFXML().setListener(listener);
                     stage.setScene(signUpPage.getScene());
                 }
         );
@@ -101,7 +114,7 @@ public class GraphicalAgent
     {
         stopLoops("signUp");
         Platform.runLater(
-                () -> signUpPage.setMessage(message)
+                () -> signUpPage.getFXML().setMessage(message)
         );
     }
 
@@ -110,9 +123,9 @@ public class GraphicalAgent
         stopLoops("mainMenu");
         Platform.runLater(
                 () -> {
-                    mainMenu.clear();
-                    mainMenu.setListener(listener);
-                    mainMenu.setAuthToken(authToken);
+                    mainMenu.getFXML().clear();
+                    mainMenu.getFXML().setListener(listener);
+                    mainMenu.getFXML().setAuthToken(authToken);
                     stage.setScene(mainMenu.getScene());
                 }
         );
@@ -122,7 +135,7 @@ public class GraphicalAgent
     {
         stopLoops("mainMenu");
         Platform.runLater(
-                () -> mainMenu.setMessage(message)
+                () -> mainMenu.getFXML().setMessage(message)
         );
 
     }
@@ -130,17 +143,17 @@ public class GraphicalAgent
     public void showScoreboard(ObservableList<ScoreboardResultFinalized> list)
     {
         stopLoops("scoreboard");
-        if (!scoreboard.isDisplayed())
+        if (!scoreboard.getFXML().isDisplayed())
         {
             Platform.runLater(
-                    scoreboard::startLoop
+                    scoreboard.getFXML()::startLoop
             );
         }
         Platform.runLater(
                 () -> {
-                    scoreboard.setScoreboard(list);
-                    scoreboard.updateScoreboard();
-                    scoreboard.setListener(listener);
+                    scoreboard.getFXML().setScoreboard(list);
+                    scoreboard.getFXML().updateScoreboard();
+                    scoreboard.getFXML().setListener(listener);
                     stage.setScene(scoreboard.getScene());
                 }
         );
@@ -149,17 +162,17 @@ public class GraphicalAgent
     public void showGamesList(ObservableList<GamesListResultFinalized> list)
     {
         stopLoops("gamesList");
-        if (!gamesList.isDisplayed())
+        if (!gamesList.getFXML().isDisplayed())
         {
             Platform.runLater(
-                    gamesList::startLoop
+                    gamesList.getFXML()::startLoop
             );
         }
         Platform.runLater(
                 () -> {
-                    gamesList.setGamesList(list);
-                    gamesList.updateGamesList();
-                    gamesList.setListener(listener);
+                    gamesList.getFXML().setGamesList(list);
+                    gamesList.getFXML().updateGamesList();
+                    gamesList.getFXML().setListener(listener);
                     stage.setScene(gamesList.getScene());
                 }
         );
