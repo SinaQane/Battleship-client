@@ -3,6 +3,7 @@ package graphics.pages;
 import event.EventListener;
 import event.events.authentication.SignupEvent;
 import event.events.menu.ChangeFrameEvent;
+import javafx.application.Platform;
 import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -29,15 +30,23 @@ public class SignUpFXML implements Initializable
 
     public void setMessage(String message)
     {
-        messageText.setText(message);
-        messageText.setVisible(true);
+        Platform.runLater(
+            () -> {
+                messageText.setText(message);
+                messageText.setVisible(true);
+            }
+        );
     }
 
     public void clear()
     {
-        usernameTextField.clear();
-        passwordTextField.clear();
-        messageText.setVisible(false);
+        Platform.runLater(
+            () -> {
+                usernameTextField.clear();
+                passwordTextField.clear();
+                messageText.setVisible(false);
+            }
+        );
     }
 
     public void signup()

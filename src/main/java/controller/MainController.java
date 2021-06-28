@@ -127,6 +127,12 @@ public class MainController implements ResponseVisitor
     }
 
     @Override
+    public void pickBoard(Board[] boards)
+    {
+        graphicalAgent.showBoardPickingPage(boards);
+    }
+
+    @Override
     public void changeFrame(String frame)
     {
         switch (frame)
@@ -154,12 +160,6 @@ public class MainController implements ResponseVisitor
 
     @Override
     public void viewGame(Game game)
-    {
-
-    }
-
-    @Override
-    public void pickBoard(Board[] boards)
     {
 
     }

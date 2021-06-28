@@ -5,6 +5,7 @@ import event.events.authentication.LogoutEvent;
 import event.events.menu.GamesListEvent;
 import event.events.menu.ScoreboardEvent;
 import event.events.startgame.PickBoardEvent;
+import javafx.application.Platform;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
@@ -33,13 +34,19 @@ public class MainMenuFXML implements Initializable
 
     public void setMessage(String message)
     {
-        messageText.setText(message);
-        messageText.setVisible(true);
+        Platform.runLater(
+            () -> {
+                messageText.setText(message);
+                messageText.setVisible(true);
+            }
+        );
     }
 
     public void clear()
     {
-        messageText.setVisible(false);
+        Platform.runLater(
+            () -> messageText.setVisible(false)
+        );
     }
 
     public void newGame()

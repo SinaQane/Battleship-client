@@ -3,10 +3,13 @@ package graphics;
 import controller.gameslist.GamesListResultFinalized;
 import controller.scoreboard.ScoreboardResultFinalized;
 import event.EventListener;
+import event.events.authentication.LogoutEvent;
+import graphics.game.PickBoard;
 import graphics.pages.*;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.stage.Stage;
+import model.Board;
 import model.game.Game;
 import util.Loop;
 
@@ -61,6 +64,10 @@ public class GraphicalAgent
                     firstPage.getFXML().setListener(listener);
                     stage.setTitle("Battleship");
                     stage.setResizable(false);
+                    stage.setOnHidden(e -> {
+                        listener.listen(new LogoutEvent(authToken)); // TODO test
+                        Platform.exit();
+                    });
                     stage.show();
                     stage.setScene(firstPage.getScene());
                 }
@@ -178,6 +185,19 @@ public class GraphicalAgent
         );
     }
 
+    public void showBoardPickingPage(Board[] boards)
+    {
+        Platform.runLater(
+                () -> {
+                    PickBoard pickBoardPage = new PickBoard();
+                    pickBoardPage.getFXML().setListener(listener);
+                    pickBoardPage.getFXML().setBoards(boards);
+                    pickBoardPage.getFXML().startLoop();
+                    stage.setScene(pickBoardPage.getScene());
+                }
+        );
+    }
+
     // These functions should be worked on later (They're too important)
 
     public void visitGame()
@@ -188,11 +208,6 @@ public class GraphicalAgent
     private void updateWatchingGameBoard()
     {
         // TODO Same as updateCurrentGameBoard()
-    }
-
-    public void showBoardPickingPage()
-    {
-        // TODO
     }
 
     public void showGamePage()

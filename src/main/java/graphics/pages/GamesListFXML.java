@@ -6,6 +6,7 @@ import event.EventListener;
 import event.events.menu.ChangeFrameEvent;
 import event.events.menu.GamesListEvent;
 import event.events.menu.ViewGameEvent;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -42,6 +43,7 @@ public class GamesListFXML implements Initializable
     {
         displayed = true;
         loop = new Loop(ClientConstants.UPDATE_FPS, this::update);
+        loop.start();
     }
 
     public void stopLoop()
@@ -100,13 +102,17 @@ public class GamesListFXML implements Initializable
         table.getColumns().add(playerOneSunkenShips);
         table.getColumns().add(playerTwoSunkenShips);
         table.setPrefSize(800, 600);
-        tableContainer.getChildren().add(0, table);
+        Platform.runLater(
+            () -> tableContainer.getChildren().add(0, table)
+        );
     }
 
     public void viewGame()
     {
         String game = gameTextBox.getText();
-        gameTextBox.clear();
+        Platform.runLater(
+            () -> gameTextBox.clear()
+        );
         try
         {
             int index = Integer.parseInt(game);
@@ -117,7 +123,9 @@ public class GamesListFXML implements Initializable
 
     public void back()
     {
-        gameTextBox.clear();
+        Platform.runLater(
+            () -> gameTextBox.clear()
+        );
         listener.listen(new ChangeFrameEvent("mainMenu"));
     }
 }

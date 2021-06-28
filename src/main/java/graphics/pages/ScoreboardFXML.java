@@ -5,6 +5,7 @@ import controller.scoreboard.ScoreboardResultFinalized;
 import event.EventListener;
 import event.events.menu.ChangeFrameEvent;
 import event.events.menu.ScoreboardEvent;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.control.SelectionMode;
@@ -40,6 +41,7 @@ public class ScoreboardFXML implements Initializable
     {
         displayed = true;
         loop = new Loop(ClientConstants.UPDATE_FPS, this::update);
+        loop.start();
     }
 
     public void stopLoop()
@@ -86,7 +88,9 @@ public class ScoreboardFXML implements Initializable
         table.getColumns().add(scoreColumn);
         table.getColumns().add(isOnlineColumn);
         table.setPrefSize(800, 600);
-        tableContainer.getChildren().add(0, table);
+        Platform.runLater(
+            () -> tableContainer.getChildren().add(0, table)
+        );
     }
 
     public void back()

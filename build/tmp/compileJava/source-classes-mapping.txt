@@ -1,37 +1,33 @@
+graphics/game/GameFrameFXML.java
+ graphics.game.GameFrameFXML
+controller/gameslist/GamesListResultFinalized.java
+ controller.gameslist.GamesListResultFinalized
+Main.java
+ Main
+controller/scoreboard/ScoreboardController.java
+ controller.scoreboard.ScoreboardController
+controller/scoreboard/ScoreboardResultFinalized.java
+ controller.scoreboard.ScoreboardResultFinalized
+constants/ClientConstants.java
+ constants.ClientConstants
+graphics/pages/LoginFXML.java
+ graphics.pages.LoginFXML
 controller/gameslist/GamesListController.java
  controller.gameslist.GamesListController
 event/EventSender.java
  event.EventSender
 graphics/game/GameFrame.java
  graphics.game.GameFrame
-graphics/game/BoardPane.java
- graphics.game.BoardPane
-event/EventListener.java
- event.EventListener
-graphics/pages/Login.java
- graphics.pages.Login
-constants/ClientConstants.java
- constants.ClientConstants
-controller/gameslist/GamesListResultFinalized.java
- controller.gameslist.GamesListResultFinalized
-controller/scoreboard/ScoreboardResultFinalized.java
- controller.scoreboard.ScoreboardResultFinalized
-controller/scoreboard/ScoreboardController.java
- controller.scoreboard.ScoreboardController
-graphics/game/PickBoard.java
- graphics.game.PickBoard
-event/SocketEventSender.java
- event.SocketEventSender
-graphics/pages/LoginFXML.java
- graphics.pages.LoginFXML
 graphics/pages/FirstPageFXML.java
  graphics.pages.FirstPageFXML
 graphics/pages/MainMenuFXML.java
  graphics.pages.MainMenuFXML
 graphics/pages/SignUpFXML.java
  graphics.pages.SignUpFXML
-graphics/pages/GamesListFXML.java
- graphics.pages.GamesListFXML
+graphics/game/BoardPane.java
+ graphics.game.BoardPane
+controller/MainController.java
+ controller.MainController
 graphics/pages/GamesList.java
  graphics.pages.GamesList
 graphics/pages/FirstPage.java
@@ -44,9 +40,19 @@ graphics/pages/MainMenu.java
  graphics.pages.MainMenu
 graphics/pages/Scoreboard.java
  graphics.pages.Scoreboard
+event/EventListener.java
+ event.EventListener
+event/SocketEventSender.java
+ event.SocketEventSender
+graphics/game/PickBoard.java
+ graphics.game.PickBoard
+graphics/pages/GamesListFXML.java
+ graphics.pages.GamesListFXML
+graphics/game/PickBoardFXML.java
+ graphics.game.PickBoardFXML
+graphics/game/BoardPaneFXML.java
+ graphics.game.BoardPaneFXML
 graphics/GraphicalAgent.java
  graphics.GraphicalAgent
-Main.java
- Main
-controller/MainController.java
- controller.MainController
+graphics/pages/Login.java
+ graphics.pages.Login
