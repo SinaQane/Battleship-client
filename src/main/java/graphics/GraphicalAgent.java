@@ -67,9 +67,14 @@ public class GraphicalAgent
                 stage.setResizable(false);
                 stage.setOnHidden(e -> {
                     listener.listen(new LogoutEvent(authToken));
+                    try
+                    {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException ignored) {}
+                    stopLoops("");
                     eventSender.close();
                     Platform.exit();
-                    stopLoops("");
+                    System.exit(0);
                 });
                 stage.show();
                 stage.setScene(firstPage.getScene());
