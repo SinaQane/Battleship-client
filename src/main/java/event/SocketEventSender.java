@@ -33,7 +33,12 @@ public class SocketEventSender implements EventSender
     public Response sendEvent(Event event)
     {
         printStream.println(gson.toJson(event, Event.class));
-        return gson.fromJson(scanner.nextLine(), Response.class);
+        String line = "null";
+        if (scanner.hasNext())
+        {
+            line = scanner.nextLine();
+        }
+        return gson.fromJson(line, Response.class);
     }
 
     @Override

@@ -93,12 +93,9 @@ public class GameFrameFXML implements Initializable
             else if (game.isRunning() && mode != 0)
             {
                 listener.listen(new UpdateTimerEvent());
-                if (game.getTime() <= 1)
+                if (game.getTime() <= 1 && game.getSide() == mode)
                 {
-                    if (game.getSide() == mode && mode != 0)
-                    {
-                        listener.listen(new GameMoveEvent(playerToken, -1, -1)); // hit (-1, -1) for timeoutEvent
-                    }
+                    listener.listen(new GameMoveEvent(playerToken, -1, -1)); // hit (-1, -1) for timeoutEvent
                 }
             }
         }
@@ -116,6 +113,11 @@ public class GameFrameFXML implements Initializable
                 BoardPane playerTwoBoard = new BoardPane();
                 playerOneBoard.getFXML().setListener(listener);
                 playerTwoBoard.getFXML().setListener(listener);
+                if (mode == 0)
+                {
+                    playerOneBoard.getFXML().buttonsAvailable(false);
+                    playerTwoBoard.getFXML().buttonsAvailable(false);
+                }
                 if (mode == 1)
                 {
                     playerOneBoard.getFXML().giveFullAccess();
@@ -149,6 +151,10 @@ public class GameFrameFXML implements Initializable
                 if (mode != 0)
                 {
                     listener.listen(new ResignEvent(playerToken));
+                }
+                else
+                {
+                    listener.listen(new ChangeFrameEvent("mainMenu"));
                 }
             }
             else

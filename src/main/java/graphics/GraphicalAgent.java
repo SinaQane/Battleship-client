@@ -195,6 +195,7 @@ public class GraphicalAgent
 
     public void showBoardPickingPage(Board[] boards)
     {
+        stopLoops("");
         Platform.runLater(
             () -> {
                 PickBoard pickBoardPage = new PickBoard();
@@ -209,11 +210,15 @@ public class GraphicalAgent
 
     public void watchGame(Game game)
     {
+        stopLoops("");
         Platform.runLater(
             () -> {
                 gameFrame = new GameFrame();
                 gameFrame.getFXML().setListener(listener);
-                gameFrame.getFXML().setGame(game);
+                if (game != null)
+                {
+                    gameFrame.getFXML().setGame(game);
+                }
                 gameFrame.getFXML().setMode(0);
                 gameFrame.getFXML().setPlayerToken(authToken);
                 gameFrame.getFXML().startLoop();
@@ -224,6 +229,7 @@ public class GraphicalAgent
 
     public void playGame(Game game, int player)
     {
+        stopLoops("");
         Platform.runLater(
             () -> {
                 gameFrame = new GameFrame();
