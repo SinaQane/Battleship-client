@@ -5,6 +5,7 @@ import event.EventListener;
 import event.events.gameplay.GameMoveEvent;
 import event.events.gameplay.GetBoardEvent;
 import event.events.gameplay.ResignEvent;
+import event.events.gameplay.UpdateTimerEvent;
 import event.events.menu.ChangeFrameEvent;
 import javafx.application.Platform;
 import javafx.fxml.Initializable;
@@ -22,13 +23,10 @@ import java.util.ResourceBundle;
 public class GameFrameFXML implements Initializable
 {
     private EventListener listener;
-    private final Object lock = new Object();
     private String playerToken;
     private Game game;
     private Loop loop;
 
-    private int timeLeftSeconds = 25;
-    private int moves = 0;
     private int mode;
 
     public Label gameMessageText;
@@ -39,7 +37,11 @@ public class GameFrameFXML implements Initializable
     public Pane secondBoard;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {}
+    public void initialize(URL location, ResourceBundle resources)
+    {
+        gameMessageText.setText("New Game");
+        timerText.setText("waiting for opponent");
+    }
 
     public void setListener(EventListener listener)
     {
@@ -81,40 +83,24 @@ public class GameFrameFXML implements Initializable
             if (!game.isRunning())
             {
                 Platform.runLater(
-                        () -> timerText.setText("game over")
+                        () -> {
+                            gameMessageText.setText(game.getGameMessage());
+                            timerText.setText("game over");
+                        }
                 );
                 stopLoop();
             }
-            if (mode != 0)
+            else if (game.isRunning() && mode != 0)
             {
-                synchronized (lock)
+                listener.listen(new UpdateTimerEvent());
+                if (game.getTime() <= 1)
                 {
-                    if (moves == game.getMoves())
+                    if (game.getSide() == mode && mode != 0)
                     {
-                        timeLeftSeconds--;
-                        if (timeLeftSeconds == 0)
-                        {
-                            if (moves % 2 != mode && mode != 0)
-                            {
-                                listener.listen(new GameMoveEvent(playerToken, -1, -1)); // hit (-1, -1) for timeout
-                            }
-                            timeLeftSeconds = 25;
-                            moves++;
-                        }
-                    }
-                    else
-                    {
-                        timeLeftSeconds = 25;
-                        moves++;
+                        listener.listen(new GameMoveEvent(playerToken, -1, -1)); // hit (-1, -1) for timeoutEvent
                     }
                 }
             }
-        }
-        else
-        {
-            Platform.runLater(
-                    () -> timerText.setText("waiting for opponent")
-            );
         }
     }
 
@@ -122,17 +108,10 @@ public class GameFrameFXML implements Initializable
     {
         Platform.runLater(
             () -> {
-                if (mode != 0)
-                {
-                    timerText.setText(timeLeftSeconds + " seconds left");
-                }
-                else
-                {
-                    timerText.setText("viewing game as spectator");
-                }
+                timerText.setText(game.getTime() / 2 + " seconds left");
                 gameMessageText.setText(game.getGameMessage());
-                firstPlayerText.setText(game.getPlayer(Side.PLAYER_ONE).getUsername());
-                secondPlayerText.setText(game.getPlayer(Side.PLAYER_TWO).getUsername());
+                firstPlayerText.setText("Player 1: " + game.getPlayer(Side.PLAYER_ONE).getUsername());
+                secondPlayerText.setText("Player 2: " + game.getPlayer(Side.PLAYER_TWO).getUsername());
                 BoardPane playerOneBoard = new BoardPane();
                 BoardPane playerTwoBoard = new BoardPane();
                 playerOneBoard.getFXML().setListener(listener);
@@ -163,16 +142,20 @@ public class GameFrameFXML implements Initializable
 
     public void back()
     {
-        if (game.isRunning())
+        if (game != null)
         {
-            if (mode != 0)
+            if (game.isRunning())
             {
-                listener.listen(new ResignEvent(playerToken));
+                if (mode != 0)
+                {
+                    listener.listen(new ResignEvent(playerToken));
+                }
+            }
+            else
+            {
+                listener.listen(new ChangeFrameEvent("mainMenu"));
             }
         }
-        else
-        {
-            listener.listen(new ChangeFrameEvent("mainMenu"));
-        }
+        // TODO else{}
     }
 }

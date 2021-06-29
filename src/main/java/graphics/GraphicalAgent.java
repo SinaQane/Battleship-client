@@ -3,6 +3,7 @@ package graphics;
 import controller.gameslist.GamesListResultFinalized;
 import controller.scoreboard.ScoreboardResultFinalized;
 import event.EventListener;
+import event.EventSender;
 import event.events.authentication.LogoutEvent;
 import graphics.game.GameFrame;
 import graphics.game.PickBoard;
@@ -18,6 +19,7 @@ public class GraphicalAgent
     private String authToken;
 
     private final EventListener listener;
+    private final EventSender eventSender;
     private final Stage stage;
 
     private final FirstPage firstPage = new FirstPage();
@@ -28,10 +30,11 @@ public class GraphicalAgent
     private final GamesList gamesList = new GamesList();
     private GameFrame gameFrame;
 
-    public GraphicalAgent(EventListener listener, Stage stage)
+    public GraphicalAgent(EventListener listener, EventSender eventSender, Stage stage)
     {
         this.stage = stage;
         this.listener = listener;
+        this.eventSender = eventSender;
     }
 
     public void setAuthToken(String authToken)
@@ -64,7 +67,9 @@ public class GraphicalAgent
                 stage.setResizable(false);
                 stage.setOnHidden(e -> {
                     listener.listen(new LogoutEvent(authToken));
+                    eventSender.close();
                     Platform.exit();
+                    stopLoops("");
                 });
                 stage.show();
                 stage.setScene(firstPage.getScene());

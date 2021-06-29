@@ -30,7 +30,7 @@ public class MainController implements ResponseVisitor
     public MainController(EventSender eventSender, Stage stage)
     {
         loop = new Loop(ClientConstants.EVENT_FPS, this::sendEvents);
-        graphicalAgent = new GraphicalAgent(this::addEvent, stage);
+        graphicalAgent = new GraphicalAgent(this::addEvent, eventSender, stage);
         this.eventSender = eventSender;
     }
 

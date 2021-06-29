@@ -34,7 +34,12 @@ public class PickBoardFXML implements Initializable
     public Button nextButton;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {}
+    public void initialize(URL location, ResourceBundle resources)
+    {
+        Platform.runLater(
+                () -> timerText.setText(timeLeftSeconds + " seconds left")
+        );
+    }
 
     public void setListener(EventListener listener)
     {
