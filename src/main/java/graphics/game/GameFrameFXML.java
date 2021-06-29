@@ -23,12 +23,13 @@ public class GameFrameFXML implements Initializable
 {
     private EventListener listener;
     private final Object lock = new Object();
-    private int timeLeftSeconds = 25;
     private String playerToken;
-    private int moves = 0;
-    private int mode;
     private Game game;
     private Loop loop;
+
+    private int timeLeftSeconds = 25;
+    private int moves = 0;
+    private int mode;
 
     public Label gameMessageText;
     public Label timerText;
@@ -74,36 +75,46 @@ public class GameFrameFXML implements Initializable
     public void update()
     {
         listener.listen(new GetBoardEvent(playerToken));
-        repaintPage();
-        if (!game.isRunning())
+        if (game != null)
         {
-            Platform.runLater(
-                () -> timerText.setText("game over")
-            );
-            stopLoop();
-        }
-        if (mode != 0)
-        {
-            synchronized (lock)
+            repaintPage();
+            if (!game.isRunning())
             {
-                if (moves == game.getMoves())
+                Platform.runLater(
+                        () -> timerText.setText("game over")
+                );
+                stopLoop();
+            }
+            if (mode != 0)
+            {
+                synchronized (lock)
                 {
-                    timeLeftSeconds--;
-                    if (timeLeftSeconds == 0)
+                    if (moves == game.getMoves())
                     {
-                        if (moves % 2 != mode && mode != 0)
+                        timeLeftSeconds--;
+                        if (timeLeftSeconds == 0)
                         {
-                            listener.listen(new GameMoveEvent(playerToken, -1, -1)); // hit (-1, -1) for timeout
+                            if (moves % 2 != mode && mode != 0)
+                            {
+                                listener.listen(new GameMoveEvent(playerToken, -1, -1)); // hit (-1, -1) for timeout
+                            }
+                            timeLeftSeconds = 25;
+                            moves++;
                         }
+                    }
+                    else
+                    {
                         timeLeftSeconds = 25;
+                        moves++;
                     }
                 }
-                else
-                {
-                    timeLeftSeconds = 25;
-                    moves++;
-                }
             }
+        }
+        else
+        {
+            Platform.runLater(
+                    () -> timerText.setText("waiting for opponent")
+            );
         }
     }
 
