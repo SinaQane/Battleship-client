@@ -218,7 +218,10 @@ public class GraphicalAgent
             () -> {
                 gameFrame = new GameFrame();
                 gameFrame.getFXML().setListener(listener);
-                gameFrame.getFXML().setGame(game);
+                if (game != null)
+                {
+                    gameFrame.getFXML().setGame(game);
+                }
                 gameFrame.getFXML().setMode(player);
                 gameFrame.getFXML().setPlayerToken(authToken);
                 gameFrame.getFXML().startLoop();
@@ -230,7 +233,9 @@ public class GraphicalAgent
     public void updateGameBoard(Game game)
     {
         Platform.runLater(
-            () -> gameFrame.getFXML().setGame(game)
+            () -> {
+                if (game != null) gameFrame.getFXML().setGame(game);
+            }
         );
     }
 }
