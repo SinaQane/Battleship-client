@@ -95,6 +95,13 @@ public class PickBoardFXML implements Initializable
 
     public void select()
     {
+        Platform.runLater(
+                () -> {
+                    cancelButton.setDisable(true);
+                    selectButton.setDisable(true);
+                    nextButton.setDisable(true);
+                }
+        );
         listener.listen(new StartGameEvent(token, boards[remainingAttempts]));
     }
 

@@ -59,7 +59,10 @@ public class MainController implements ResponseVisitor
         for (Event event : temp)
         {
             Response response = eventSender.sendEvent(event);
-            response.visit(this);
+            if (response != null)
+            {
+                response.visit(this);
+            }
         }
     }
 
