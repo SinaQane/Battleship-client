@@ -76,7 +76,14 @@ public class GameFrameFXML implements Initializable
 
     public void update()
     {
-        listener.listen(new GetBoardEvent(playerToken));
+        if (mode == 0)
+        {
+            listener.listen(new GetBoardEvent("0"));
+        }
+        else
+        {
+            listener.listen(new GetBoardEvent(playerToken));
+        }
         if (game != null)
         {
             repaintPage();
